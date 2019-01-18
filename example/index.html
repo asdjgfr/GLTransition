@@ -31,8 +31,14 @@
       });
       test.GLTrans();
 
-      els[i].addEventListener('click', function (params) {
+      els[i].querySelector('canvas').addEventListener('click', function (params) {
         test.toggle();
+      });
+      els[i].querySelector('canvas').addEventListener('mouseenter', function (params) {
+        test.on();
+      });
+      els[i].querySelector('canvas').addEventListener('mouseleave', function (params) {
+        test.off();
       });
     };
   </script>
