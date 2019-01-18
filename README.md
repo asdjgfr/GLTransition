@@ -21,6 +21,20 @@
 
 示例：
 
+`HTML`:
+
+```html
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script src="./js/TweenMax.min.js"></script>
+<script src="./js/gltrans.js"></script>
+```
+
+`javascript`:
+
 ```javascript
 let els = document.querySelectorAll('li');
 let arr = [];

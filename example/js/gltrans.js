@@ -48,12 +48,9 @@ class GLTransition {
 	GLTrans() {
 		const program = this.program;
 		this.el.appendChild(this.canvas);
-		// プログラムの作成
-		// vertextシェーダをコンパイル
 		const vShader = this.gl.createShader(this.gl.VERTEX_SHADER);
 		this.gl.shaderSource(vShader, this.vertexSrc);
 		this.gl.compileShader(vShader);
-		// fragmentシェーダをコンパイル
 		const fShader = this.gl.createShader(this.gl.FRAGMENT_SHADER);
 		this.gl.shaderSource(fShader, this.fragmentSrc);
 		this.gl.compileShader(fShader);
@@ -64,14 +61,12 @@ class GLTransition {
 		this.gl.attachShader(program, fShader);
 		this.gl.deleteShader(fShader);
 		this.gl.linkProgram(program);
-		// bufferの作成
 		const vertices = new Float32Array([-1, -1, 1, -1, -1, 1, 1, -1, -1, 1, 1, 1]);
 		this.vertexBuffer = this.gl.createBuffer();
 		this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vertexBuffer);
 		this.gl.bufferData(this.gl.ARRAY_BUFFER, vertices, this.gl.STATIC_DRAW);
 		this.vertexLocation = this.gl.getAttribLocation(program, 'position');
 		this.gl.bindBuffer(this.gl.ARRAY_BUFFER, null);
-		// uniformのロケーションを取得しておく
 		this.uTransLoc = this.gl.getUniformLocation(program, 'uTrans');
 
 		this.textureLocArr.push(this.gl.getUniformLocation(program, 'uTexture0'));
@@ -88,8 +83,6 @@ class GLTransition {
 			_this.textureArr.push(texture);
 			img.onload = function (_index, _img) {
 				let texture = _this.textureArr[_index];
-
-				// imageをテクスチャーとして更新する
 				_this.gl.bindTexture(_this.gl.TEXTURE_2D, texture);
 				_this.gl.texImage2D(_this.gl.TEXTURE_2D, 0, _this.gl.RGB, _this.gl.RGB, _this.gl.UNSIGNED_BYTE, _img);
 				_this.gl.generateMipmap(_this.gl.TEXTURE_2D);
@@ -108,22 +101,14 @@ class GLTransition {
 	}
 
 	loop() {
-		// WebGLを初期化する
 		this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
 		this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 		this.gl.clear(this.gl.COLOR_BUFFER_BIT);
-
-		// 使用するprogramを指定する
-
 		this.gl.useProgram(this.program);
-
-		// 描画に使用する頂点バッファーをattributeとして設定する。
 		this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vertexBuffer);
 		this.gl.vertexAttribPointer(
 			this.vertexLocation, 2, this.gl.FLOAT, false, 0, 0);
 		this.gl.enableVertexAttribArray(this.vertexLocation);
-		// uniformsの値を指定する
-		// 描画に使用するのtexture設定
 		const _this = this;
 		this.textureArr.forEach(function (texture, index) {
 			_this.gl.activeTexture(_this.gl.TEXTURE0 + index);
