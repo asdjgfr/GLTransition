@@ -1,5 +1,7 @@
 ### 一个[WebGL](https://developer.mozilla.org/zh-CN/docs/Web/API/WebGL_API)图片切换效果。
 
+[github地址](https://github.com/asdjgfr/GLTransition)
+
 效果如图：![webgl效果](./example/assets/example.gif)
 
 [在线预览](http://htmlpreview.github.io/?https://github.com/asdjgfr/GLTransition/blob/master/example/index.html)
