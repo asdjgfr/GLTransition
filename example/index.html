@@ -33,6 +33,9 @@
       els[i].querySelector('canvas').addEventListener('click', function (params) {
         test.toggle();
       });
+      els[i].querySelector('canvas').addEventListener('touchstart', function (params) {
+        test.toggle();
+      });
       els[i].querySelector('canvas').addEventListener('mouseenter', function (params) {
         test.on();
       });
