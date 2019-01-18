@@ -14,6 +14,7 @@ class GLTransition {
 			defaultOptions[key] = options[key]
 		};
 		let { el, images, width, height, transImg, vertexSrc, fragmentSrc, onComplete } = defaultOptions;
+		this.GLTrans = this.GLTrans.bind(this);
 		this.loadImages = this.loadImages.bind(this);
 		this.loop = this.loop.bind(this);
 		this.toggle = this.toggle.bind(this);
@@ -42,6 +43,7 @@ class GLTransition {
 		this.textureLocArr = [];
 		this.cnt = 0;
 		this.program = this.gl.createProgram();
+		this.GLTrans();
 	}
 	GLTrans() {
 		const program = this.program;
